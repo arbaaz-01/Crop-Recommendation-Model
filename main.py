@@ -77,7 +77,7 @@ if st.button("Recommend Crop"):
     probas = model.predict_proba(input_df)[0]
     top_proba = np.max(probas) * 100
     if top_proba<=85:
-        st.success(f"Recommended Crop: **Unknown**")
+        st.success(f"Recommended Crop: **No Suitable Crop**")
     else:
         st.success(f"Recommended Crop: **{crop_name.capitalize()}**")
 

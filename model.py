@@ -235,3 +235,27 @@ plt.xticks(rotation=45, ha='right')
 plt.yticks(rotation=0)
 plt.tight_layout()
 plt.show()
+
+
+# eigth
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import accuracy_score
+import pickle
+import numpy as np
+
+# Load data and model if not already in memory
+# X_aug = pd.concat([pd.read_csv('X_train.csv'), pd.read_csv('X_test.csv')])
+# y_aug = pd.concat([pd.read_csv('y_train.csv'), pd.read_csv('y_test.csv')])
+with open('stacking_model.pkl', 'rb') as f:
+    stacking_clf = pickle.load(f)
+
+# Final Evaluation with Stratified K-Fold
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+stacking_scores = []
+for train_idx, val_idx in skf.split(X_aug, y_aug):
+    X_tr, X_val = X_aug.iloc[train_idx], X_aug.iloc[val_idx]
+    y_tr, y_val = y_aug.iloc[train_idx], y_aug.iloc[val_idx]
+    stacking_clf.fit(X_tr, y_tr)
+    y_pred = stacking_clf.predict(X_val)
+    stacking_scores.append(accuracy_score(y_val, y_pred))
+print(f"Stacking Model - 5-Fold CV Accuracy: {np.mean(stacking_scores):.4f} ± {np.std(stacking_scores):.4f}")
