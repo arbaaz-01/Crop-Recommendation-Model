@@ -57,7 +57,7 @@ This Crop Recommendation System analyzes soil and climate parameters to suggest 
 ### 🔁 Clone the Repository
 ```bash
 git clone https://github.com/arbaaz-01/Crop-Recommendation-Model.git
-cd crop-recommendation
+cd Crop-Recommendation-Model
 ```
 
 
