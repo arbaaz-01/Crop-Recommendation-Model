@@ -101,7 +101,7 @@ Place the `Crop_recommendation.csv` file in the **root folder** of the project.
 ### ▶️ Run Locally
 
 ```bash
-streamlit run app.py
+streamlit run main.py
 ```
 
 Then visit: [http://localhost:port_add](http://localhost:port_add)
